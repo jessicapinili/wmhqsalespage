@@ -2391,8 +2391,8 @@
   });
 
   function getNextLiveCall() {
-    // Next live call: Wednesday 2 April 2026, 6:30am AEST (Brisbane)
-    return new Date('2026-04-02T06:30:00+10:00');
+    // Next live call: Wednesday 15 April 2026, 6:00pm AEST (Brisbane)
+    return new Date('2026-04-15T18:00:00+10:00');
   }
   function updateLiveCallTimer() {
     const target = getNextLiveCall();
@@ -2429,7 +2429,6 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
-
   function toggleFaq(btn) {
     const body = btn.nextElementSibling;
     const arrow = btn.querySelector('.faq-acc-arrow');
@@ -2456,6 +2455,5 @@
     arrow.textContent = isOpen ? '+' : '×';
   }
 </script>
-
 </body>
 </html>

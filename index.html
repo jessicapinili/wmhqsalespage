@@ -49,6 +49,102 @@
     border-color: rgba(255,222,226,0.5);
   }
 
+  /* ── HERO ASK JP ACCORDION ── */
+  .hero-askjp-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4px 0 32px;
+  }
+  @keyframes askjp-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,222,226,0.25); }
+    50% { box-shadow: 0 0 0 6px rgba(255,222,226,0); }
+  }
+  .hero-askjp-trigger {
+    animation: askjp-pulse 2.4s ease-in-out infinite;
+  }
+  .hero-askjp-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,222,226,0.1);
+    border: 1px solid rgba(255,222,226,0.45);
+    color: rgba(255,222,226,0.9);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hero-askjp-trigger:hover { background: rgba(255,222,226,0.18); }
+  .hero-askjp-trigger .hacc-arrow {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    line-height: 1;
+  }
+  .hero-askjp-wrap.open .hero-askjp-trigger .hacc-arrow { transform: rotate(45deg); }
+  .hero-askjp-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    width: 100%;
+    max-width: 520px;
+  }
+  .hero-askjp-wrap.open .hero-askjp-body { max-height: 400px; }
+  .hero-askjp-inner {
+    margin-top: 16px;
+    background: rgba(255,222,226,0.06);
+    border: 1px solid rgba(255,222,226,0.15);
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .hero-askjp-list {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero-askjp-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: rgba(255,222,226,0.85);
+    line-height: 1.5;
+  }
+  .hero-askjp-list li .hacc-tick {
+    color: rgba(255,222,226,0.7);
+    flex-shrink: 0;
+    font-size: 13px;
+    margin-top: 1px;
+  }
+  .hero-price-pill {
+    display: inline-block;
+    background: rgba(255,222,226,0.1);
+    border: 1px solid rgba(255,222,226,0.3);
+    color: rgba(255,222,226,0.8);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 20px;
+  }
+  @media (max-width: 600px) {
+    .hero-askjp-trigger { font-size: 9.5px; padding: 8px 14px; gap: 8px; letter-spacing: 0.08em; }
+    .hero-askjp-inner { padding: 16px 18px; }
+  }
+
   /* New inclusion badges */
   .card-inclusion-badge, .vip-inclusion-badge {
     display: inline-block;
@@ -565,7 +661,7 @@
     color: rgba(255,222,226,0.85);
     max-width: 640px;
     line-height: 1.75;
-    margin-bottom: 52px;
+    margin-bottom: 20px;
     font-weight: 400;
     letter-spacing: 0.02em;
   }
@@ -1966,6 +2062,23 @@
   <p class="hero-eyebrow">Woman Mastery HQ Membership</p>
   <h1><em>The</em> membership for female entrepreneurs.<br>Strategy that <em>scales</em> with you.<br>Identity work that <em>removes</em> what's blocking you.</h1>
   <p class="hero-sub">Woman Mastery HQ Membership gives you a proven system across strategy, business structure, and subconscious identity work specifically designed for female online business owners already hitting $5K–$20K months who are tired of income that spikes when they push and stalls the moment life interrupts.</p>
+  <div class="hero-askjp-wrap" id="hero-askjp">
+    <button class="hero-askjp-trigger" onclick="toggleHeroAcc()">
+      <span>✦ Mentorship from Jess → Exclusive access to the "Ask JP" channel</span>
+      <span class="hacc-arrow">+</span>
+    </button>
+    <div class="hero-askjp-body">
+      <div class="hero-askjp-inner">
+        <ul class="hero-askjp-list">
+          <li><span class="hacc-tick">✓</span> Feedback on your offer, content, or funnel</li>
+          <li><span class="hacc-tick">✓</span> Ask anything about business or mindset</li>
+          <li><span class="hacc-tick">✓</span> Validate your ideas before launch</li>
+          <li><span class="hacc-tick">✓</span> This level of access doesn't exist anywhere else</li>
+        </ul>
+        <span class="hero-price-pill">Usual Price: $1,000/hr</span>
+      </div>
+    </div>
+  </div>
   <div>
     <a href="#pricing" class="btn-primary">Join WMHQ, $450 AUD/mo</a>
   </div>
@@ -2657,6 +2770,12 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+  // Hero Ask JP accordion
+  window.toggleHeroAcc = function() {
+    var wrap = document.getElementById('hero-askjp');
+    wrap.classList.toggle('open');
+  };
+
   // Inside section — mobile accordion
   (function() {
     function buildAccordionItem(el, allItems) {

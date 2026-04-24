@@ -71,6 +71,124 @@
     margin-bottom: 14px;
   }
 
+  /* ── TESTIMONIALS CAROUSEL ── */
+  .testimonials-section {
+    background: #f5f0eb;
+    padding: 80px 24px;
+    overflow: hidden;
+  }
+  .testimonials-section .section-divider {
+    margin-bottom: 40px;
+  }
+  .testimonials-heading {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    color: #3D0D11;
+    margin: 0 0 8px;
+    letter-spacing: 0.01em;
+  }
+  .testimonials-sub {
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8a6a5a;
+    margin: 0 0 48px;
+  }
+  .testimonials-carousel-wrap {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .testimonials-track-outer {
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .testimonials-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+  }
+  .testimonial-slide {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px rgba(61,13,17,0.08);
+  }
+  .testimonial-slide img {
+    width: 100%;
+    max-width: 860px;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+  .testimonials-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(61,13,17,0.12);
+    color: #3D0D11;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, box-shadow 0.2s;
+    z-index: 2;
+    box-shadow: 0 2px 12px rgba(61,13,17,0.1);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .testimonials-arrow:hover { background: #fff; box-shadow: 0 4px 20px rgba(61,13,17,0.16); }
+  .testimonials-arrow.prev { left: -22px; }
+  .testimonials-arrow.next { right: -22px; }
+  .testimonials-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .testimonials-dots button {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(61,13,17,0.2);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .testimonials-dots button.active {
+    background: #3D0D11;
+    transform: scale(1.3);
+  }
+  .testimonials-counter {
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: #8a6a5a;
+    margin-top: 14px;
+    text-transform: uppercase;
+  }
+  @media (max-width: 600px) {
+    .testimonials-arrow.prev { left: -12px; }
+    .testimonials-arrow.next { right: -12px; }
+    .testimonials-arrow { width: 36px; height: 36px; font-size: 15px; }
+    .testimonials-section { padding: 60px 16px; }
+  }
+
   /* ── LIVE CALL BAR ── */
   .live-call-bar {
     background: var(--noir);
@@ -2015,6 +2133,36 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS CAROUSEL -->
+<section class="testimonials-section">
+  <div class="section-divider"></div>
+  <h2 class="testimonials-heading">What Members Are Saying</h2>
+  <p class="testimonials-sub">Real results. Real women.</p>
+  <div class="testimonials-carousel-wrap">
+    <button class="testimonials-arrow prev" onclick="testimonialsMove(-1)" aria-label="Previous">&#8592;</button>
+    <div class="testimonials-track-outer">
+      <div class="testimonials-track" id="testimonials-track">
+        <div class="testimonial-slide"><img src="testimonials/131.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/132.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/133.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/134.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/135.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/136.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/137.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/138.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/139.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/140.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/141.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/142.png" alt="Member testimonial" loading="lazy"></div>
+        <div class="testimonial-slide"><img src="testimonials/143.png" alt="Member testimonial" loading="lazy"></div>
+      </div>
+    </div>
+    <button class="testimonials-arrow next" onclick="testimonialsMove(1)" aria-label="Next">&#8594;</button>
+  </div>
+  <div class="testimonials-dots" id="testimonials-dots"></div>
+  <p class="testimonials-counter" id="testimonials-counter">1 / 13</p>
+</section>
+
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="section-divider"></div>
@@ -2358,6 +2506,43 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+  // Testimonials carousel
+  (function() {
+    const track = document.getElementById('testimonials-track');
+    const dotsWrap = document.getElementById('testimonials-dots');
+    const counter = document.getElementById('testimonials-counter');
+    const total = track ? track.children.length : 0;
+    let current = 0;
+
+    function buildDots() {
+      for (let i = 0; i < total; i++) {
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', 'Slide ' + (i+1));
+        if (i === 0) b.classList.add('active');
+        b.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(b);
+      }
+    }
+    function goTo(n) {
+      current = (n + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dotsWrap.querySelectorAll('button').forEach((b, i) => b.classList.toggle('active', i === current));
+      counter.textContent = (current + 1) + ' / ' + total;
+    }
+    window.testimonialsMove = function(dir) { goTo(current + dir); };
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    if (track) {
+      track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+    }
+    if (total > 0) buildDots();
+  })();
+
   function toggleFaq(btn) {
     const body = btn.nextElementSibling;
     const arrow = btn.querySelector('.faq-acc-arrow');

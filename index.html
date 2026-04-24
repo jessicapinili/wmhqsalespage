@@ -87,8 +87,58 @@
       padding: 0;
     }
     .inside-card.featured {
-      background: #f5f0eb;
+      background: var(--rosewood);
     }
+    .inside-card.featured .inside-card-trigger h3 {
+      color: var(--misty);
+    }
+    .inside-card.featured .inside-card-trigger .inside-num {
+      color: rgba(255,222,226,0.25);
+    }
+    .inside-card.featured .inside-acc-arrow {
+      border-color: rgba(255,222,226,0.5);
+      color: var(--misty);
+      background: rgba(255,222,226,0.1);
+    }
+    .inside-card.featured.open .inside-acc-arrow {
+      background: rgba(255,222,226,0.2);
+    }
+    /* VIP accordion mobile */
+    .inside-vip {
+      border-radius: 0;
+    }
+    .inside-vip .inside-card-trigger {
+      padding: 18px 20px;
+    }
+    .inside-vip .inside-card-trigger h3 {
+      color: var(--misty);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .inside-vip .inside-acc-arrow {
+      border-color: rgba(255,222,226,0.5);
+      color: var(--misty);
+      background: rgba(255,222,226,0.1);
+    }
+    .inside-vip.open .inside-acc-arrow {
+      transform: rotate(180deg);
+      background: rgba(255,222,226,0.2);
+    }
+    .inside-vip .inside-card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+      padding: 0 20px;
+      color: rgba(255,222,226,0.78);
+    }
+    .inside-vip.open .inside-card-body {
+      max-height: 400px;
+      padding-bottom: 20px;
+    }
+    .inside-vip .vip-num-bg { display: none; }
     .inside-card-trigger {
       display: flex;
       align-items: center;
@@ -2052,7 +2102,7 @@
         <li>Revenue tracking dashboards</li>
         <li>Content planning systems</li>
         <li>Launch and sales trackers</li>
-        <li>Identity and progress journals</li>
+        <li>Subconscious and capacity work</li>
       </ul>
     </div>
     <!-- Card 3: Vault -->
@@ -2609,45 +2659,48 @@
   setInterval(updateCountdown, 1000);
   // Inside section — mobile accordion
   (function() {
+    function buildAccordionItem(el, allItems) {
+      if (el.querySelector('.inside-card-trigger')) return;
+      const num = el.querySelector('.inside-num');
+      const tag = el.querySelector('.inside-tag');
+      const h3  = el.querySelector('h3');
+      const bodyChildren = Array.from(el.children).filter(function(child) {
+        return child !== num && child !== tag && child !== h3 && !child.hasAttribute('data-vip-num');
+      });
+      const trigger = document.createElement('div');
+      trigger.className = 'inside-card-trigger';
+      const trigLeft = document.createElement('div');
+      trigLeft.className = 'inside-card-trigger-left';
+      if (num) trigLeft.appendChild(num);
+      if (h3)  trigLeft.appendChild(h3);
+      const arrow = document.createElement('span');
+      arrow.className = 'inside-acc-arrow';
+      arrow.innerHTML = '&#8964;';
+      trigger.appendChild(trigLeft);
+      trigger.appendChild(arrow);
+      const body = document.createElement('div');
+      body.className = 'inside-card-body';
+      if (tag) body.appendChild(tag);
+      bodyChildren.forEach(function(child) { body.appendChild(child); });
+      // Clear and rebuild (keep inline big-number for VIP out of the way)
+      const bigNum = el.querySelector('[style*="absolute"]');
+      el.innerHTML = '';
+      if (bigNum) el.appendChild(bigNum);
+      el.appendChild(trigger);
+      el.appendChild(body);
+      trigger.addEventListener('click', function() {
+        const isOpen = el.classList.contains('open');
+        allItems.forEach(function(i) { i.classList.remove('open'); });
+        if (!isOpen) el.classList.add('open');
+      });
+    }
+
     function initAccordion() {
       if (window.innerWidth > 767) return;
-      const cards = document.querySelectorAll('.inside-card');
-      if (cards[0] && cards[0].querySelector('.inside-card-trigger')) return; // already done
-      cards.forEach(function(card) {
-        const num = card.querySelector('.inside-num');
-        const tag = card.querySelector('.inside-tag');
-        const h3  = card.querySelector('h3');
-        // Everything except num/tag/h3 goes into the body
-        const bodyChildren = Array.from(card.children).filter(function(el) {
-          return el !== num && el !== tag && el !== h3;
-        });
-        // Build trigger
-        const trigger = document.createElement('div');
-        trigger.className = 'inside-card-trigger';
-        const trigLeft = document.createElement('div');
-        trigLeft.className = 'inside-card-trigger-left';
-        trigLeft.appendChild(num);
-        trigLeft.appendChild(h3);
-        const arrow = document.createElement('span');
-        arrow.className = 'inside-acc-arrow';
-        arrow.innerHTML = '&#8964;';
-        trigger.appendChild(trigLeft);
-        trigger.appendChild(arrow);
-        // Build body
-        const body = document.createElement('div');
-        body.className = 'inside-card-body';
-        body.appendChild(tag);
-        bodyChildren.forEach(function(el) { body.appendChild(el); });
-        card.innerHTML = '';
-        card.appendChild(trigger);
-        card.appendChild(body);
-        trigger.addEventListener('click', function() {
-          const isOpen = card.classList.contains('open');
-          // Close all
-          cards.forEach(function(c) { c.classList.remove('open'); });
-          if (!isOpen) card.classList.add('open');
-        });
-      });
+      const cards = Array.from(document.querySelectorAll('.inside-card'));
+      const vip   = document.querySelector('.inside-vip');
+      const all   = vip ? cards.concat([vip]) : cards;
+      all.forEach(function(el) { buildAccordionItem(el, all); });
     }
     initAccordion();
   })();

@@ -2123,6 +2123,9 @@
     .hacc-text-full { display: none; }
     .hacc-text-short { display: inline; }
     .hero-askjp-trigger { white-space: normal; width: 100%; max-width: 100%; box-sizing: border-box; justify-content: center; }
+    .hacc-arrow { font-size: 0; }
+    .hacc-arrow::after { content: '▾'; font-size: 14px; display: inline; line-height: 1; }
+    .hero-askjp-wrap.open .hero-askjp-trigger .hacc-arrow { transform: rotate(180deg); }
   }
 </style>
 </head>

@@ -581,6 +581,8 @@
     transition: color 0.2s;
   }
   .offer-bar-cta:hover { color: var(--misty); }
+  .offer-bar-text--short { display: none; }
+  .hacc-text-short { display: none; }
 
   /* ── NAV (shift down for offer bar) ── */
   nav {
@@ -2039,6 +2041,42 @@
     .inside-vip { padding: 28px 18px; }
     .fit-col { padding: 32px 20px; }
   }
+
+  /* ── MOBILE STICKY HEADER OPTIMISATION (≤ 600px) ── */
+  @media (max-width: 600px) {
+    /* Offer bar: compact single line */
+    .offer-bar { padding: 7px 12px; gap: 8px; }
+    .offer-bar-text--full { display: none; }
+    .offer-bar-text--short { display: inline; }
+    .offer-bar-dot--mid { display: none; }
+    .offer-bar-text { font-size: 9px; letter-spacing: 0.1em; }
+    .offer-bar-cta { font-size: 9px; letter-spacing: 0.1em; }
+
+    /* Shift nav up to match smaller offer bar (~27px) */
+    nav { top: 27px; }
+
+    /* Live call bar: tighter, single row */
+    .live-call-bar { padding: 8px 14px; gap: 14px; }
+    .live-call-label { display: none; }
+    .live-call-countdown-label { font-size: 8px; letter-spacing: 0.08em; }
+    .live-call-timer { font-size: 12px; }
+    .live-call-cta { display: none; }
+    .live-call-divider:last-of-type { display: none; }
+
+    /* Sticky live bar offset to match compact offer bar */
+    .live-call-bar.sticky-live { top: 27px; padding: 8px 14px; }
+
+    /* Inside accordions: thinner triggers */
+    .inside-card-trigger { padding: 11px 16px; }
+    .inside-card-trigger h3 { font-size: 15px; }
+    .inside-vip .inside-card-trigger { padding: 11px 16px; }
+    .inside-vip .inside-card-trigger h3 { font-size: 15px; }
+
+    /* Hero accordion: prevent overflow, use short label */
+    .hacc-text-full { display: none; }
+    .hacc-text-short { display: inline; }
+    .hero-askjp-trigger { white-space: normal; width: 100%; max-width: 100%; box-sizing: border-box; justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -2046,8 +2084,9 @@
 <!-- OFFER BAR -->
 <div class="offer-bar">
   <div class="offer-bar-dot"></div>
-  <span class="offer-bar-text"><strong>April Offer — First 10 spots only:</strong> $500 voucher toward a 1:1 + first access to the new WMHQ Personal Portal</span>
-  <div class="offer-bar-dot"></div>
+  <span class="offer-bar-text offer-bar-text--full"><strong>April Offer — First 10 spots only:</strong> $500 voucher toward a 1:1 + first access to the new WMHQ Personal Portal</span>
+  <span class="offer-bar-text offer-bar-text--short"><strong>April Offer:</strong> $500 voucher · First 10 spots only</span>
+  <div class="offer-bar-dot offer-bar-dot--mid"></div>
   <a href="#pricing" class="offer-bar-cta">Secure your spot →</a>
 </div>
 
@@ -2064,7 +2103,8 @@
   <p class="hero-sub">Woman Mastery HQ Membership gives you a proven system across strategy, business structure, and subconscious identity work specifically designed for female online business owners already hitting $5K–$20K months who are tired of income that spikes when they push and stalls the moment life interrupts.</p>
   <div class="hero-askjp-wrap" id="hero-askjp">
     <button class="hero-askjp-trigger" onclick="toggleHeroAcc()">
-      <span>✦ Mentorship from Jess → Exclusive access to the "Ask JP" channel</span>
+      <span class="hacc-text-full">✦ Mentorship from Jess → Exclusive access to the "Ask JP" channel</span>
+      <span class="hacc-text-short">✦ Mentorship with Jess</span>
       <span class="hacc-arrow">+</span>
     </button>
     <div class="hero-askjp-body">
@@ -2260,7 +2300,7 @@
   </div>
   <!-- VIP Workshop -->
   <div class="inside-vip" style="position:relative;">
-    <div style="position:absolute; top:20px; right:28px; font-family:'Cormorant Garamond',serif; font-size:64px; color:rgba(255,222,226,0.08); font-weight:600; line-height:1; user-select:none; pointer-events:none;">06</div>
+    <div class="vip-num-bg" style="position:absolute; top:20px; right:28px; font-family:'Cormorant Garamond',serif; font-size:64px; color:rgba(255,222,226,0.08); font-weight:600; line-height:1; user-select:none; pointer-events:none;">06</div>
     <div class="vip-text">
       <h3>WMHQ Virtual VIP Workshop</h3>
       <div class="vip-inclusion-badge">✦ New Membership Inclusion</div>

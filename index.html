@@ -1164,7 +1164,9 @@
   .fit-col.yes { background: var(--merlot); }
   .fit-col.no { background: var(--cream); border: 1px solid rgba(112,2,15,0.12); }
   .fit-col-label {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -1172,7 +1174,13 @@
     font-weight: 600;
     padding: 10px 20px;
     border-radius: 24px;
+    font-family: inherit;
+    cursor: default;
+    appearance: none;
+    -webkit-appearance: none;
   }
+  .fit-acc-arrow { display: none; }
+  .fit-acc-body { display: block; }
   .fit-col.yes .fit-col-label {
     background: rgba(255,222,226,0.1);
     border: 1px solid rgba(255,222,226,0.22);
@@ -2068,6 +2076,43 @@
     /* Sticky live bar offset to match compact offer bar */
     .live-call-bar.sticky-live { top: 27px; padding: 11px 16px; }
 
+    /* Fit section: accordion on mobile */
+    .fit-grid { gap: 12px; }
+    .fit-col { padding: 0; }
+    .fit-col-label {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0;
+      padding: 16px 20px;
+      border-radius: 0;
+      cursor: pointer;
+    }
+    .fit-acc-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,222,226,0.4);
+      font-size: 16px;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .fit-col.no .fit-acc-arrow { border-color: rgba(112,2,15,0.2); color: var(--rosewood); }
+    .fit-col.open .fit-acc-arrow { transform: rotate(45deg); }
+    .fit-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fit-col.open .fit-acc-body { max-height: 700px; }
+    .fit-list { padding: 0 20px 20px; }
+    .fit-list li { font-size: 13px; gap: 12px; padding: 14px 0; }
+
     /* Inside accordions: thinner triggers */
     .inside-card-trigger { padding: 11px 16px; }
     .inside-card-trigger h3 { font-size: 15px; }
@@ -2414,27 +2459,37 @@
     <h2 class="section-title" style="color:var(--merlot);">Made For You.<br><em style="font-style:italic;">Or Not.</em></h2>
   </div>
   <div class="fit-grid">
-    <div class="fit-col yes">
-      <span class="fit-col-label">✓ WMHQ Is For You If</span>
-      <ul class="fit-list">
-        <li><span class="fit-yes-mark">✓</span> Your revenue swings from $5K to $35K and you can't find a floor — which means you can't plan, scale, or predict anything</li>
-        <li><span class="fit-yes-mark">✓</span> Engagement metrics look good. Sales metrics don't. You're excellent at building an audience. You're terrible at converting it.</li>
-        <li><span class="fit-yes-mark">✓</span> You've built the offer, the proof, the testimonials. You're still grinding for every launch because something's blocking the conversion.</li>
-        <li><span class="fit-yes-mark">✓</span> You know increasing your pricing is your next move. Then something inside you sabotages it before you even try.</li>
-        <li><span class="fit-yes-mark">✓</span> You hit big months, then crash hard — illness, disappearance, revenue collapse. It's a pattern, not coincidence.</li>
-        <li><span class="fit-yes-mark">✓</span> You feel it: you need visibility and leadership to scale. But every time you move toward it, your body shuts down.</li>
-      </ul>
+    <div class="fit-col yes" id="fit-yes">
+      <button class="fit-col-label" onclick="toggleFit('fit-yes')">
+        <span>✓ WMHQ Is For You If</span>
+        <span class="fit-acc-arrow">+</span>
+      </button>
+      <div class="fit-acc-body">
+        <ul class="fit-list">
+          <li><span class="fit-yes-mark">✓</span> Your revenue swings from $5K to $35K and you can't find a floor — which means you can't plan, scale, or predict anything</li>
+          <li><span class="fit-yes-mark">✓</span> Engagement metrics look good. Sales metrics don't. You're excellent at building an audience. You're terrible at converting it.</li>
+          <li><span class="fit-yes-mark">✓</span> You've built the offer, the proof, the testimonials. You're still grinding for every launch because something's blocking the conversion.</li>
+          <li><span class="fit-yes-mark">✓</span> You know increasing your pricing is your next move. Then something inside you sabotages it before you even try.</li>
+          <li><span class="fit-yes-mark">✓</span> You hit big months, then crash hard — illness, disappearance, revenue collapse. It's a pattern, not coincidence.</li>
+          <li><span class="fit-yes-mark">✓</span> You feel it: you need visibility and leadership to scale. But every time you move toward it, your body shuts down.</li>
+        </ul>
+      </div>
     </div>
-    <div class="fit-col no">
-      <span class="fit-col-label">✗ WMHQ Is Not For You If</span>
-      <ul class="fit-list">
-        <li><span class="fit-no-mark">✗</span> You're brand new to business with no offer or revenue yet</li>
-        <li><span class="fit-no-mark">✗</span> You're looking for a template to copy without doing the inner work</li>
-        <li><span class="fit-no-mark">✗</span> You want quick-fix tactics without building real infrastructure</li>
-        <li><span class="fit-no-mark">✗</span> You're not willing to look at the subconscious patterns blocking your growth</li>
-        <li><span class="fit-no-mark">✗</span> You just want a course library to binge without community or accountability</li>
-        <li><span class="fit-no-mark">✗</span> You're not ready to be seen, challenged, or held to a higher standard</li>
-      </ul>
+    <div class="fit-col no" id="fit-no">
+      <button class="fit-col-label" onclick="toggleFit('fit-no')">
+        <span>✗ WMHQ Is Not For You If</span>
+        <span class="fit-acc-arrow">+</span>
+      </button>
+      <div class="fit-acc-body">
+        <ul class="fit-list">
+          <li><span class="fit-no-mark">✗</span> You're brand new to business with no offer or revenue yet</li>
+          <li><span class="fit-no-mark">✗</span> You're looking for a template to copy without doing the inner work</li>
+          <li><span class="fit-no-mark">✗</span> You want quick-fix tactics without building real infrastructure</li>
+          <li><span class="fit-no-mark">✗</span> You're not willing to look at the subconscious patterns blocking your growth</li>
+          <li><span class="fit-no-mark">✗</span> You just want a course library to binge without community or accountability</li>
+          <li><span class="fit-no-mark">✗</span> You're not ready to be seen, challenged, or held to a higher standard</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -2816,6 +2871,11 @@
   window.toggleHeroAcc = function() {
     var wrap = document.getElementById('hero-askjp');
     wrap.classList.toggle('open');
+  };
+
+  // Fit section accordion (mobile only)
+  window.toggleFit = function(id) {
+    document.getElementById(id).classList.toggle('open');
   };
 
   // Inside section — mobile accordion

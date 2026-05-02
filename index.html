@@ -530,7 +530,7 @@
   /* Sticky live bar — hides nav */
   .live-call-bar.sticky-live {
     position: fixed;
-    top: 37px;
+    top: 0;
     left: 0; right: 0;
     z-index: 99;
     padding: 14px 60px;
@@ -589,9 +589,9 @@
   .offer-bar-text--short { display: none; }
   .hacc-text-short { display: none; }
 
-  /* ── NAV (shift down for offer bar) ── */
+  /* ── NAV ── */
   nav {
-    position: fixed; top: 37px; left: 0; right: 0; z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 22px 60px;
     background: rgba(253,250,247,0.94);
@@ -639,7 +639,7 @@
   }
   .hero-eyebrow {
     font-family: 'Jost', sans-serif;
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: rgba(255,222,226,0.65);
@@ -648,7 +648,7 @@
   }
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 4vw, 62px);
+    font-size: clamp(28px, 5.5vw, 80px);
     color: #ffffff;
     font-weight: 300;
     line-height: 1.14;
@@ -664,11 +664,11 @@
     color: #f0b8be;
   }
   .hero-sub {
-    font-size: 19px;
+    font-size: 22px;
     color: #ffffff;
-    max-width: 640px;
-    line-height: 1.75;
-    margin-bottom: 20px;
+    max-width: 900px;
+    line-height: 1.6;
+    margin-bottom: 40px;
     font-weight: 400;
     letter-spacing: 0.02em;
   }
@@ -2067,7 +2067,7 @@
     .offer-bar-cta { font-size: 9px; letter-spacing: 0.1em; }
 
     /* Shift nav up to match smaller offer bar (~27px) */
-    nav { top: 27px; }
+    nav { top: 0; }
 
     /* Live call bar: tighter, single row */
     .live-call-bar { padding: 11px 16px; gap: 14px; flex-wrap: nowrap; }
@@ -2079,8 +2079,7 @@
     .live-call-cta { display: none; }
     .live-call-divider:last-of-type { display: none; }
 
-    /* Sticky live bar offset to match compact offer bar */
-    .live-call-bar.sticky-live { top: 27px; padding: 11px 16px; }
+    .live-call-bar.sticky-live { top: 0; padding: 11px 16px; }
 
     /* Fit section: accordion on mobile */
     .fit-grid { gap: 12px; }
@@ -2148,7 +2147,7 @@
 <!-- HERO -->
 <section class="hero">
   <p class="hero-eyebrow">Woman Mastery HQ Membership</p>
-  <h1>From repeating the same sabotaging patterns and revenue to a <em>scalable, sustainable online business.</em></h1>
+  <h1>From constantly rebuilding momentum and revenue to a <em>scalable, sustainable online business.</em></h1>
   <p class="hero-sub">You've spent another quarter knowing exactly what to do and not doing it. WMHQ Membership is for female entrepreneurs at $5k–$20K months who are done overcomplicating their business.</p>
   <div>
     <a href="#pricing" class="btn-primary">Start building for $112/week</a>

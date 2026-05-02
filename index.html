@@ -2804,25 +2804,6 @@
   }
   updateLiveCallTimer();
   setInterval(updateLiveCallTimer, 1000);
-  function updateCountdown() {
-    const end = new Date('2026-04-30T23:59:59+10:00').getTime();
-    const now = new Date().getTime();
-    const diff = end - now;
-    if (diff <= 0) {
-      document.getElementById('countdown-timer').innerHTML = '<span style="font-size:11px;letter-spacing:0.1em;color:rgba(255,222,226,0.4)">OFFER CLOSED</span>';
-      return;
-    }
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hrs  = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diff % (1000 * 60)) / 1000);
-    document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(hrs).padStart(2,'0');
-    document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
-    document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
   // Hero Ask JP accordion
   window.toggleHeroAcc = function() {
     var wrap = document.getElementById('hero-askjp');

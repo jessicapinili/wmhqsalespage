@@ -173,7 +173,7 @@
   }
 
   /* ── INSIDE ACCORDION (MOBILE ONLY) ── */
-  @media (max-width: 900px) {
+  @media (max-width: 767px) {
     .inside-grid {
       display: flex;
       flex-direction: column;
@@ -2873,7 +2873,7 @@
     }
 
     function initAccordion() {
-      if (window.innerWidth > 900) return;
+      if (window.innerWidth > 767) return;
       const cards = Array.from(document.querySelectorAll('.inside-card'));
       const vip   = document.querySelector('.inside-vip');
       const all   = vip ? cards.concat([vip]) : cards;

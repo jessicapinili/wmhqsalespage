@@ -797,7 +797,7 @@
 
   /* ── MIRROR / PROBLEM ── */
   .problem-section {
-    background: var(--noir);
+    background: #2e2829;
     padding: 100px 60px;
   }
   .problem-label-card {
@@ -824,11 +824,72 @@
   }
   .problem-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
     max-width: 1100px;
     margin: 0 auto;
     align-items: start;
+  }
+  .problem-image-col {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 120px;
+  }
+  .problem-image-col img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+    object-fit: cover;
+  }
+  /* ── STEPS SECTION ── */
+  .steps-section {
+    background: #f2f2f2;
+    padding: 80px 60px;
+  }
+  .steps-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .steps-card {
+    background: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    padding: 28px 26px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .steps-card .step-num {
+    background: rgba(112,2,15,0.1);
+    border-color: rgba(112,2,15,0.3);
+    color: #70020f;
+  }
+  .steps-card .step-title {
+    color: #1a1a1a;
+    font-size: 15px;
+  }
+  .steps-card .step-body {
+    color: #555555;
+    font-size: 14px;
+  }
+  .steps-after {
+    grid-column: 1 / -1;
+    flex-direction: column !important;
+    background: #1a0508 !important;
+    border-color: rgba(240,184,190,0.2) !important;
+    gap: 10px !important;
+  }
+  .steps-after .step-body {
+    color: rgba(255,222,226,0.75) !important;
+  }
+  .steps-after .problem-after-label {
+    color: #f0b8be;
   }
   .problem-left .section-title {
     color: var(--misty);
@@ -838,9 +899,18 @@
   }
   .problem-left p {
     font-size: 15px;
-    color: rgba(255,222,226,0.55);
+    color: rgba(255,222,226,0.82);
     line-height: 1.8;
     font-weight: 300;
+    margin-bottom: 18px;
+  }
+  .problem-left p:last-child { margin-bottom: 0; }
+  .problem-left .problem-sign-off {
+    margin-top: 28px;
+    font-size: 15px;
+    color: rgba(255,222,226,0.75);
+    font-weight: 400;
+    font-style: italic;
   }
   .problem-list {
     list-style: none;
@@ -857,13 +927,50 @@
     display: flex; gap: 18px; align-items: flex-start;
     font-weight: 300;
   }
-  .problem-list li::before {
-    content: ',';
+  .step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    background: rgba(240,184,190,0.18);
+    border: 1px solid rgba(240,184,190,0.45);
     color: #f0b8be;
-    flex-shrink: 0;
-    margin-top: 3px;
+    font-family: 'Jost', sans-serif;
     font-size: 13px;
-    opacity: 0.8;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content { display: flex; flex-direction: column; gap: 6px; }
+  .step-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,222,226,0.95);
+    letter-spacing: 0.01em;
+    display: block;
+  }
+  .step-body {
+    font-size: 14px;
+    color: rgba(255,222,226,0.6);
+    line-height: 1.72;
+    font-weight: 300;
+  }
+  .problem-after {
+    flex-direction: column !important;
+    gap: 10px !important;
+    background: rgba(112,2,15,0.18) !important;
+    border-color: rgba(240,184,190,0.3) !important;
+  }
+  .problem-after-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #f0b8be;
   }
 
   /* ── REFRAME ── */
@@ -1981,11 +2088,19 @@
 
     /* PROBLEM */
     .problem-section { padding: 60px 20px; }
-    .problem-layout { grid-template-columns: 1fr; gap: 40px; }
+    .problem-layout { grid-template-columns: 1fr; gap: 32px; max-width: 100%; }
+    .problem-image-col { width: 100%; position: static; }
+    .problem-image-col img { width: 60%; margin: 0 auto; border-radius: 12px; }
     .problem-left .section-title { font-size: clamp(20px, 5.5vw, 30px); line-height: 1.22; }
     .problem-left p { font-size: 14px; line-height: 1.75; }
-    .problem-list { gap: 8px; }
-    .problem-list li { font-size: 14px; padding: 18px 16px; line-height: 1.7; gap: 12px; }
+
+    /* STEPS */
+    .steps-section { padding: 50px 20px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 12px; }
+    .steps-after { grid-column: 1; }
+    .steps-card { padding: 22px 18px; gap: 14px; }
+    .steps-card .step-body { font-size: 13px; }
+    .steps-card .step-title { font-size: 14px; }
 
     /* REFRAME */
     .reframe { padding: 60px 20px; text-align: left; }
@@ -2234,17 +2349,62 @@
 <section class="problem-section">
   <div class="problem-layout">
     <div class="problem-left">
-      <div class="problem-label-card">Here's what's happening.<br>Pay attention.</div>
-      <h2 class="section-title">You didn't get here by accident. You built this. The buyers, the reputation, the consistent months. But your body learned: Safety = staying exactly here. Growth = exposure.</h2>
-      <p style="margin-top:28px;">I've been watching female founders for a long time. And there's a specific pattern that separates the women who break $50K, $80K, $100K months from the women who stay stuck at $15K–$25K for years — even when they have the skill, the offer, and the audience to scale. It's not strategy. It's the operator behind the strategy.</p>
+      <div class="problem-label-card">WHY WMHQ WAS CREATED</div>
+      <h2 class="section-title">Why I Built Woman Mastery HQ</h2>
+      <p style="margin-top:28px;">I built WMHQ because I watched women — including myself — hit a ceiling that strategy couldn't fix.</p>
+      <p>For years I did what every coach in this industry tells you to do. Built the offer. Built the audience. Booked the clients. Hit the consistent months. Got the proof.</p>
+      <p>It worked. The business made money. The reputation grew. The buyers kept coming.</p>
+      <p>And somehow I was still smaller than my own capacity.</p>
+      <p>That's when I started asking the question I'd been avoiding: if I already know what to do, why am I not doing it?</p>
+      <p>The answer wasn't just a new strategy. It was identity.</p>
+      <p>My business was built around the woman I was at $10K months. My nervous system was wired for the version of me that was still proving she could do this. My subconscious was running safety patterns from years before — patterns that made staying exactly here feel like home, and growth feel like exposure.</p>
+      <p>So I built WMHQ.<br>A space for women already running real businesses. Where strategy assumes you have buyers. Where identity work is built for scaling, not surviving. Where the standard of the room is the woman you're becoming, not the woman you've been.</p>
+      <p>Because the next revenue level was never about doing more. It was about being held by a room that operated at the level you were already capable of.</p>
+      <p>Welcome to WMHQ.</p>
+      <p class="problem-sign-off">Big Love,<br>Jess xo</p>
     </div>
-    <ul class="problem-list">
-      <li>You know exactly what your next move is. Higher prices. A premium offer. Bigger visibility. A bolder position. But every time you go to do it, something in your body pulls you back to what's familiar — even when familiar is the thing keeping you stuck.</li>
-      <li>You hit a $40K month. Then the next month drops to $18K. You launch big, then go quiet for three weeks. You raise your prices, then take on a discounted client "just this once" or do a "one off sale."</li>
-      <li>You're the smartest, most self-aware, most driven woman in every container you're in. You get affirmation, not stretch. You're leading every Voxer/Telegram thread, answering every question in the group, and quietly outgrowing the coach you signed with 18 months ago. You don't need more support. You need a higher room.</li>
-      <li>You're not chasing $50K+ months for the dopamine. You're building generational money. Property. Investments. A life your family hasn't seen before. And you're done apologising for the size of what you actually want, even to yourself.</li>
-    </ul>
+    <div class="problem-image-col">
+      <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2162592122/settings_images/5b1abd-4cf-cfd7-fe14-112df25a3f_WMHQ_Mockups_11_.png" alt="Jessica Pinili" loading="lazy">
+    </div>
   </div>
+</section>
+
+<!-- STEPS SECTION -->
+<section class="steps-section">
+  <ul class="steps-grid">
+    <li class="steps-card">
+      <span class="step-num">1</span>
+      <div class="step-content">
+        <strong class="step-title">Complete WMHQ Onboarding</strong>
+        <span class="step-body">Map where you stand across the 4 pillars: Influence, Visibility, Cash, and Subconscious Mastery, across 3 phases. Know exactly which pillar is capping your revenue, which phase you're operating in, and which area to rebuild first.</span>
+      </div>
+    </li>
+    <li class="steps-card">
+      <span class="step-num">2</span>
+      <div class="step-content">
+        <strong class="step-title">Begin your priority phase</strong>
+        <span class="step-body">Focused lessons, frameworks, and execution prompts on the pillar holding your ceiling in place. Move the needle in 30 days where it actually matters, not where it's already working.</span>
+      </div>
+    </li>
+    <li class="steps-card">
+      <span class="step-num">3</span>
+      <div class="step-content">
+        <strong class="step-title">Build your Woman Mastery</strong>
+        <span class="step-body">Audit, refine, and rebuild inside your personal WMHQ Portal. Track your progress across all four pillars and design your next level of income, visibility, leadership, and identity, month after month, with everything in one place.</span>
+      </div>
+    </li>
+    <li class="steps-card">
+      <span class="step-num">4</span>
+      <div class="step-content">
+        <strong class="step-title">Stay supported, not stuck</strong>
+        <span class="step-body">Every week, join a live business mastermind or subconscious call, plus weekly personalised audits. Bring your wins, your bottlenecks, and the questions you can't crack alone. Get direct mentorship, real-time feedback, and the latest strategies, week after week.</span>
+      </div>
+    </li>
+    <li class="steps-card steps-after">
+      <span class="problem-after-label">After That</span>
+      <span class="step-body">Go deeper into every pillar through Jess's frameworks, identity protocols, and WMHQ Personal Portal. Scale your business, rebuild your standard, and completely change who you are. Attend members-only virtual workshops and complete access to mentorship.</span>
+    </li>
+  </ul>
 </section>
 
 <!-- REFRAME -->

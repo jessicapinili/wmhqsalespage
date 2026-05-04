@@ -886,6 +886,15 @@
     border-color: rgba(240,184,190,0.2) !important;
     gap: 10px !important;
   }
+  .steps-card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .steps-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
   .steps-after .step-body {
     color: rgba(255,222,226,0.75) !important;
   }
@@ -1041,6 +1050,10 @@
     margin: 0 auto;
     text-align: left;
   }
+  @keyframes card-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(112,2,15,0.08); }
+    50% { box-shadow: 0 0 0 8px rgba(112,2,15,0); }
+  }
   .reframe-box {
     background: #ffffff;
     border: 1px solid rgba(112,2,15,0.14);
@@ -1049,6 +1062,10 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    animation: card-pulse 3s ease-in-out infinite;
+  }
+  .reframe-box:nth-child(2) {
+    animation-delay: 1.5s;
   }
   .reframe-tab {
     display: inline-block;
@@ -3123,6 +3140,19 @@
 </footer>
 
 <script>
+  const stepObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        stepObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.steps-card').forEach((card, i) => {
+    card.style.transitionDelay = (i * 0.1) + 's';
+    stepObserver.observe(card);
+  });
+
   function toggleNextStep(btn) {
     if (window.innerWidth > 900) return;
     const isOpen = btn.getAttribute('aria-expanded') === 'true';

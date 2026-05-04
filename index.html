@@ -1022,6 +1022,56 @@
     margin-left: auto;
     margin-right: auto;
   }
+  .reframe-sub {
+    font-size: 32px;
+    color: var(--merlot);
+    opacity: 1;
+    margin-top: -4px;
+    margin-bottom: 40px;
+    font-style: italic;
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.2;
+  }
+  .reframe-boxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .reframe-box {
+    background: #ffffff;
+    border: 1px solid rgba(112,2,15,0.14);
+    border-radius: 12px;
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .reframe-tab {
+    display: inline-block;
+    background: rgba(112,2,15,0.08);
+    border: 1px solid rgba(112,2,15,0.2);
+    color: #7b1d1d;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    align-self: flex-start;
+  }
+  .reframe-box-body {
+    font-size: 15px;
+    color: var(--noir);
+    opacity: 0.7;
+    line-height: 1.78;
+    font-weight: 300;
+    margin: 0;
+  }
   .reframe-accent {
     font-family: 'Cormorant Garamond', serif;
     font-size: 24px;
@@ -2222,6 +2272,9 @@
     .reframe-highlight { padding: 22px 24px; }
     .reframe-highlight p { font-size: 15px !important; }
     .reframe p { font-size: 15px; }
+    .reframe-boxes { grid-template-columns: 1fr; gap: 14px; }
+    .reframe-box { padding: 22px 20px; }
+    .reframe-sub { margin-bottom: 28px; }
 
     /* INSIDE */
     .inside { padding: 60px 20px; }
@@ -2387,7 +2440,7 @@
   <div>
     <a href="#pricing" class="btn-primary">Start building for $100/week</a>
   </div>
-  <p class="hero-price-note">12-month access · Personalised support</p>
+  <p class="hero-price-note">6 or 12 month option · Personalised support</p>
 </section>
 
 <!-- LIVE CALL BAR -->
@@ -2523,7 +2576,18 @@
 <!-- REFRAME -->
 <section class="reframe">
   <div class="reframe-inner">
-    <h2 class="section-title"><strong style="font-weight:700;color:#7b1d1d;">You already know how to create results. This membership is designed to help you normalise and sustain them.</strong> This space is designed for entrepreneurs who are committed to their work and ready to deepen their standards as a CEO.</h2>
+    <h2 class="section-title"><strong>You already know how to create results. This membership is designed to help you normalise and sustain them.</strong></h2>
+    <p class="reframe-sub">Inside WMHQ, we rebuild two things at once.</p>
+    <div class="reframe-boxes">
+      <div class="reframe-box">
+        <span class="reframe-tab">Strategic Refinement</span>
+        <p class="reframe-box-body">Messaging, positioning, content &amp; marketing strategy, business structure and offers that support continued business expansion.</p>
+      </div>
+      <div class="reframe-box">
+        <span class="reframe-tab">Subconscious Capacity Mastery</span>
+        <p class="reframe-box-body">The internal patterns that influence visibility, leadership, decision making, income and growth.</p>
+      </div>
+    </div>
   </div>
 </section>
 

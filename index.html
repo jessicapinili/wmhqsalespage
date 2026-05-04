@@ -2514,19 +2514,19 @@
 <section class="pricing" id="pricing">
   <div class="section-divider"></div>
   <h2 class="section-title">Join Woman Mastery HQ</h2>
-  <p class="pricing-sub">12-month access. Full support. Everything included from day one.</p>
+  <p class="pricing-sub">Full support. Everything included from day one.</p>
   <div class="currency-toggle">
-    <button class="toggle-btn active" onclick="setMonthly(this)">Monthly</button>
-    <button class="toggle-btn" onclick="setPayInFull(this)">Pay In Full</button>
+    <button class="toggle-btn active" onclick="set6Month(this)">6 Months</button>
+    <button class="toggle-btn" onclick="set12Month(this)">12 Months</button>
   </div>
   <div class="pricing-card">
-    <span class="pricing-tag" id="pricing-tag">Most Flexible</span>
+    <span class="pricing-tag" id="pricing-tag">Short Term</span>
     <div class="price-total-value">
       <span>Total Value</span>
       <s id="price-total-value-top">$46,000+ / year</s>
     </div>
     <div class="price-main" id="price-display">$450</div>
-    <p class="price-period" id="price-period">AUD per month · 12-month commitment</p>
+    <p class="price-period" id="price-period">AUD per month · 6-month commitment</p>
     <div class="price-save-badge" id="price-save-badge" style="display:none;">
       <span>🎉 You save $400</span>
     </div>
@@ -2565,8 +2565,8 @@
       <span class="price-total-label">Total Value</span>
       <span class="price-total-amount" id="price-total-amount">$46,500+/year</span>
     </div>
-    <a href="https://www.jessicapinili.com/offers/wyacfFGV/checkout" target="_blank" class="price-cta" id="price-cta">Yes, I'm Ready → Join WMHQ Now</a>
-    <p class="price-guarantee">Secure checkout · 12-month commitment · Starts immediately</p>
+    <a href="https://www.jessicapinili.com/offers/2xQreoAr" target="_blank" class="price-cta" id="price-cta">Yes, I'm Ready → Join WMHQ Now</a>
+    <p class="price-guarantee" id="price-guarantee">Secure checkout · 6-month commitment · Starts immediately</p>
   </div>
 </section>
 
@@ -2751,12 +2751,27 @@
 </footer>
 
 <script>
-  function setMonthly(btn) {
+  function set6Month(btn) {
     document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('price-display').textContent = '$450';
+    document.getElementById('price-period').textContent = 'AUD per month · 6-month commitment';
+    document.getElementById('pricing-tag').textContent = 'Short Term';
+    document.getElementById('price-save-badge').style.display = 'none';
+    document.getElementById('price-bonus').style.display = 'none';
+    document.getElementById('price-cta').textContent = 'Yes, I\'m Ready → Join WMHQ Now';
+    document.getElementById('price-cta').href = 'https://www.jessicapinili.com/offers/2xQreoAr';
+    document.getElementById('price-cta').target = '_blank';
+    document.getElementById('price-total-value-top').textContent = '$46,000+ / year';
+    document.getElementById('price-total-amount').textContent = '$46,000+/year';
+    document.getElementById('price-guarantee').textContent = 'Secure checkout · 6-month commitment · Starts immediately';
+  }
+  function set12Month(btn) {
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('price-display').textContent = '$400';
     document.getElementById('price-period').textContent = 'AUD per month · 12-month commitment';
-    document.getElementById('pricing-tag').textContent = 'Most Flexible';
+    document.getElementById('pricing-tag').textContent = 'Most Popular';
     document.getElementById('price-save-badge').style.display = 'none';
     document.getElementById('price-bonus').style.display = 'none';
     document.getElementById('price-cta').textContent = 'Yes, I\'m Ready → Join WMHQ Now';
@@ -2764,20 +2779,7 @@
     document.getElementById('price-cta').target = '_blank';
     document.getElementById('price-total-value-top').textContent = '$46,000+ / year';
     document.getElementById('price-total-amount').textContent = '$46,000+/year';
-  }
-  function setPayInFull(btn) {
-    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('price-display').textContent = '$5,000';
-    document.getElementById('price-period').textContent = 'AUD · Pay once · 12-month access';
-    document.getElementById('pricing-tag').textContent = 'Best Value — Save $400';
-    document.getElementById('price-save-badge').style.display = 'inline-block';
-    document.getElementById('price-bonus').style.display = 'flex';
-    document.getElementById('price-cta').textContent = 'Yes, I\'m Ready → Pay In Full Now';
-    document.getElementById('price-cta').href = 'https://www.jessicapinili.com/offers/cLjvqLoA/checkout';
-    document.getElementById('price-cta').target = '_blank';
-    document.getElementById('price-total-value-top').textContent = '$47,500+ / year';
-    document.getElementById('price-total-amount').textContent = '$47,500+/year';
+    document.getElementById('price-guarantee').textContent = 'Secure checkout · 12-month commitment · Starts immediately';
   }
   // Live call bar sticky on scroll
   const liveBar = document.getElementById('live-call-bar');

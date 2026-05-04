@@ -927,6 +927,10 @@
     display: flex; gap: 18px; align-items: flex-start;
     font-weight: 300;
   }
+  @keyframes step-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(240,184,190,0.35); }
+    50% { box-shadow: 0 0 0 6px rgba(240,184,190,0); }
+  }
   .step-num {
     display: flex;
     align-items: center;
@@ -943,6 +947,7 @@
     font-weight: 500;
     flex-shrink: 0;
     margin-top: 2px;
+    animation: step-pulse 2.4s ease-in-out infinite;
   }
   .step-content { display: flex; flex-direction: column; gap: 6px; }
   .step-title {
@@ -2272,7 +2277,7 @@
   <h1>You Already Know What To Do. <em>You're Just Doing It Inside A Business Built Around Who You Were A Year Ago.</em></h1>
   <p class="hero-sub">The membership for female online business owners already doing $10K–$25K months who are ready to double their revenue without doubling their hours, offer suite, or needing to double the size of their audience.</p>
   <div>
-    <a href="#pricing" class="btn-primary">Start building for $112/week</a>
+    <a href="#pricing" class="btn-primary">Start building for $100/week</a>
   </div>
   <p class="hero-price-note">12-month access · Personalised support</p>
 </section>

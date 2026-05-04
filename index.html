@@ -1646,6 +1646,83 @@
     font-weight: 300;
   }
 
+  /* ── WHAT HAPPENS WHEN YOU JOIN ── */
+  .next-steps-section {
+    background: #ffffff;
+    padding: 90px 60px;
+    text-align: center;
+  }
+  .next-steps-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 50px);
+    font-weight: 300;
+    color: #1a1a1a;
+    margin-bottom: 52px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .next-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .next-steps-card {
+    background: #faf9f8;
+    border: 1px solid #e8e4e0;
+    border-radius: 12px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .next-steps-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(112,2,15,0.08);
+    border: 1px solid rgba(112,2,15,0.22);
+    color: #70020f;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    flex-shrink: 0;
+    animation: step-pulse 2.4s ease-in-out infinite;
+  }
+  .next-steps-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a1a1a;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .next-steps-body {
+    font-size: 14px;
+    color: #666666;
+    line-height: 1.78;
+    font-weight: 300;
+    margin: 0;
+  }
+  .next-steps-trigger {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: default;
+    width: 100%;
+    text-align: left;
+    pointer-events: none;
+  }
+  .next-steps-chevron { display: none; }
+
   /* ── PROMISE ── */
   .promise {
     background: var(--cream);
@@ -2106,6 +2183,36 @@
     .steps-card { padding: 22px 18px; gap: 14px; }
     .steps-card .step-body { font-size: 13px; }
     .steps-card .step-title { font-size: 14px; }
+
+    /* WHAT HAPPENS WHEN YOU JOIN — mobile accordion */
+    .next-steps-section { padding: 60px 20px; }
+    .next-steps-grid { grid-template-columns: 1fr; gap: 10px; }
+    .next-steps-card { padding: 0; gap: 0; overflow: hidden; }
+    .next-steps-trigger {
+      pointer-events: auto;
+      cursor: pointer;
+      padding: 20px 20px;
+      gap: 12px;
+    }
+    .next-steps-chevron {
+      display: block;
+      margin-left: auto;
+      font-size: 20px;
+      color: #70020f;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+    .next-steps-trigger[aria-expanded="true"] .next-steps-chevron {
+      transform: rotate(90deg);
+    }
+    .next-steps-body {
+      padding: 0 20px 20px;
+      display: none;
+    }
+    .next-steps-trigger[aria-expanded="true"] + .next-steps-body {
+      display: block;
+    }
 
     /* REFRAME */
     .reframe { padding: 60px 20px; text-align: left; }
@@ -2735,6 +2842,37 @@
   </div>
 </section>
 
+<!-- WHAT HAPPENS WHEN YOU JOIN -->
+<section class="next-steps-section">
+  <h2 class="next-steps-heading"><strong>What happens when you join?</strong></h2>
+  <div class="next-steps-grid">
+    <div class="next-steps-card">
+      <button class="next-steps-trigger" onclick="toggleNextStep(this)" aria-expanded="true">
+        <span class="next-steps-num">1</span>
+        <h3 class="next-steps-title">Instant access, delivered to your inbox</h3>
+        <span class="next-steps-chevron">&#8250;</span>
+      </button>
+      <p class="next-steps-body">The moment you sign up, you'll receive your login details for the WMHQ Vault and Community, sent directly to the email you joined with. Your personal WMHQ Portal access is set up individually and will land in your inbox within 24 hours.</p>
+    </div>
+    <div class="next-steps-card">
+      <button class="next-steps-trigger" onclick="toggleNextStep(this)" aria-expanded="false">
+        <span class="next-steps-num">2</span>
+        <h3 class="next-steps-title">Start your onboarding inside the Vault</h3>
+        <span class="next-steps-chevron">&#8250;</span>
+      </button>
+      <p class="next-steps-body">Your onboarding videos and dashboard live inside the WMHQ Vault. Watch the welcome series, work through your first steps, introduce yourself in the community, and add your weekly calls to your calendar. Everything you need to start strong is mapped out for you in one place.</p>
+    </div>
+    <div class="next-steps-card">
+      <button class="next-steps-trigger" onclick="toggleNextStep(this)" aria-expanded="false">
+        <span class="next-steps-num">3</span>
+        <h3 class="next-steps-title">Come and say hi</h3>
+        <span class="next-steps-chevron">&#8250;</span>
+      </button>
+      <p class="next-steps-body">Send Jess a DM on Instagram (if she doesn't beat you to it). The room is warm, the door is open, and she likes knowing exactly who's walked in.</p>
+    </div>
+  </div>
+</section>
+
 <!-- PROMISE -->
 <section class="promise">
   <div class="promise-layout">
@@ -2916,6 +3054,12 @@
 </footer>
 
 <script>
+  function toggleNextStep(btn) {
+    if (window.innerWidth > 900) return;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  }
+
   function set6Month(btn) {
     document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
